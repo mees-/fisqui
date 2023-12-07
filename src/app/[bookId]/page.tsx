@@ -1,8 +1,7 @@
-import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { api } from "~/trpc/server"
 import { ErrorDisplay } from "../components/ErrorDisplay"
-import { isErr, isOk } from "~/result"
+import { isErr } from "~/result"
 import Link from "next/link"
 
 export interface RouteParams {
