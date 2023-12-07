@@ -22,10 +22,10 @@ export default async function Home() {
 
 async function BooksView() {
   const session = await getServerAuthSession()
-  const books = await api.book.list.query()
   if (!session) {
     return null
   }
+  const books = await api.book.list.query()
   return (
     <>
       <h2 className="text-3xl">Books</h2>
@@ -39,7 +39,10 @@ async function BooksView() {
       </ul>
       {(isErr(books) || books.data.length === 0) && (
         <p>
-          You don't have any books yet. <Link href="/new-book">Create one</Link>
+          You don't have any books yet.{" "}
+          <Link href="/new-book" className="underline">
+            Create one!
+          </Link>
         </p>
       )}
     </>

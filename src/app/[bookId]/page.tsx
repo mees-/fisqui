@@ -1,4 +1,3 @@
-import { TRPCError } from "@trpc/server"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { api } from "~/trpc/server"
@@ -9,22 +8,6 @@ import Link from "next/link"
 export interface RouteParams {
   params: {
     bookId: string
-  }
-}
-
-export async function generateMetadata({ params: { bookId } }: RouteParams): Promise<Metadata> {
-  const bookResult = await api.book.get.query(bookId)
-  if (isOk(bookResult)) {
-    const book = bookResult.data
-    return {
-      title: `fisqui - ${book.name}`,
-      description: `Overview of ${book.name}`,
-    }
-  } else {
-    return {
-      title: `fisqui - Not found`,
-      description: `Book  not found`,
-    }
   }
 }
 
@@ -41,7 +24,7 @@ export default async function BookIndex({ params: { bookId } }: RouteParams) {
   const book = bookResult.data
 
   return (
-    <div>
+    <div className="grow">
       <h1>{book.name}</h1>
       <h2>Ledgers</h2>
       <ul>
